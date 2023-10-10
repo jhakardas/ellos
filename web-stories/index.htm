@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head ><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v20.9 (Yoast SEO v20.9) - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Stories Archive - SecondRecipe</title><style id="wpr-usedcss">.comment-form-wprm-rating{text-align:left;margin-top:5px;margin-bottom:20px}.rtl .comment-form-wprm-rating{text-align:right}.wprm-recipe-container{outline:0}.wprm-recipe{overflow:hidden;zoom:1;text-align:left;clear:both}.wprm-recipe *{box-sizing:border-box}.wprm-recipe ul{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-padding-start:0;margin:0;padding:0}.wprm-recipe li{font-size:1em;margin:0 0 0 32px;padding:0}.wprm-recipe p{font-size:1em;margin:0;padding:0}.wprm-recipe li,.wprm-recipe li.wprm-recipe-instruction{list-style-position:outside}.wprm-recipe li:before{display:none}.wprm-recipe h2,.wprm-recipe h3{clear:none;font-variant:normal;text-transform:none;letter-spacing:normal;margin:0;padding:0}body:not(.wprm-print) .wprm-recipe p:first-letter{font-size:inherit;line-height:inherit;color:inherit;margin:inherit;padding:inherit;font-family:inherit}.rtl .wprm-recipe{text-align:right}.rtl .wprm-recipe li{margin:0 32px 0 0}.wprm-recipe-instructions-container .wprm-recipe-instruction-media{max-width:100%;margin:5px 0 15px}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;scroll-padding-top:90px}article,aside,footer,header,main,nav{display:block}progress,video{display:inline-block;vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;color:#ba4d2f}a:active,a:hover{outline:0}strong{font-weight:700}img{border:0;height:auto}a img:hover{opacity:.7}svg:not(:root){overflow:hidden}code{font-family:monospace,monospace;font-size:1em;white-space:pre-line;box-shadow:1px 1px 3px #ccc;padding:17px;margin:17px 0}button,input,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible;text-transform:none}button,html input[type=button],input[type=submit]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox]{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield;-webkit-appearance:none}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}textarea{overflow:auto}td,th{padding:0;text-align:left}*,input[type=search]{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}.entry-content:after,.entry:after,.nav-primary:after,.site-container:after,.site-footer:after,.site-header:after,.site-inner:after,.widget-area:after,.widget:after,.wrap:after{clear:both;content:" ";display:table}body{margin:0;background-color:#fff;color:#515555;font-family:Rubik,sans-serif;font-size:100%;letter-spacing:.3px;line-height:1.875;margin:0}.button,.site-header,a,button,input:focus,input[type=button],input[type=submit],textarea:focus{-webkit-transition:background-color .2s ease-in-out,color .2s ease-in-out;transition:background-color .2s ease-in-out,color .2s ease-in-out}a:focus,a:hover{color:#bbb;text-decoration:none}p{margin:0 0 30px;padding:0}ul{margin:0;padding:0}li{list-style-type:none}strong{font-weight:600}h2,h3{font-family:Karma,Helvetica,Arial,sans-serif;font-weight:300;line-height:1.3;margin:0 0 10px}h2{font-size:1.625em}h3{font-size:1.375em}.entry-content h2,.entry-content h3{margin-bottom:21px;margin-top:37px}iframe,img,object,video{max-width:100%}input,input[type=search],textarea{background-color:#fff;border:1px solid #eee;-webkit-border-radius:0;border-radius:0;color:#515555;font-weight:300;line-height:1.625;padding:13px;width:100%}input:focus,input[type=search]:focus,textarea:focus{border:1px solid #999;outline:0}input[type=checkbox],input[type=image]{width:auto}::-moz-placeholder{color:#515555;opacity:1}::-webkit-input-placeholder{color:#515555}.button,button,input[type=button],input[type=submit]{background-color:transparent;border:1px solid #ba4d2f;color:#ba4d2f;cursor:pointer;font-family:Rubik,sans-serif;font-weight:400;letter-spacing:2px;line-height:1;padding:17px 21px;text-decoration:none;text-transform:uppercase;white-space:normal;width:auto}.button{display:inline-block;margin-bottom:5px;margin-top:5px}.button.large{font-size:17px}.button:focus,.button:hover,button:focus,button:hover,input:focus[type=button],input:focus[type=submit],input:hover[type=button],input:hover[type=submit]{background-color:#ba4d2f;color:#fff}.site-container button:disabled,.site-container button:disabled:hover,.site-container input:disabled,.site-container input:disabled:hover,.site-container input[type=button]:disabled,.site-container input[type=button]:disabled:hover,.site-container input[type=submit]:disabled,.site-container input[type=submit]:disabled:hover{background-color:#f7f9fc;border-width:0;-webkit-box-shadow:none;box-shadow:none;color:#333;cursor:not-allowed}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-results-button{display:none}table{border-collapse:collapse;border-spacing:0;border-collapse:collapse;border-spacing:0;line-height:2;margin-bottom:40px;width:100%;word-break:break-all}td{border-top:1px solid #ccc;padding:6px}th{font-weight:400;padding:0 6px}td:first-child,th:first-child{padding-left:0}.screen-reader-shortcut,.screen-reader-text,.screen-reader-text span{border:0;clip:rect(0,0,0,0);height:1px;overflow:hidden;position:absolute!important;width:1px;word-wrap:normal!important}.genesis-nav-menu .search input[type=submit]:focus,.screen-reader-shortcut:focus,.screen-reader-text:focus{background-color:#fff;-webkit-box-shadow:0 0 2px 2px rgba(0,0,0,.6);box-shadow:0 0 2px 2px rgba(0,0,0,.6);clip:auto!important;color:#515555;display:block;font-size:1em;font-weight:700;height:auto;padding:15px 23px 14px;text-decoration:none;width:auto;z-index:100000}.site-container{margin:0 auto}.content-sidebar-wrap,.site-inner,.wrap{margin:0 auto;max-width:1140px}.site-inner{background:#fff;margin:10px auto;padding:15px}.content{float:right;position:relative;width:720px}.content-sidebar .content{float:left}.sidebar{float:right;width:300px}a.aligncenter img{display:block;margin:0 auto;text-align:center}a.alignnone{display:inline-block}.alignleft{float:left;text-align:left}a.alignleft,a.alignnone{max-width:100%}.aligncenter,.aligncenter img{display:block;margin:0 auto 24px;text-align:center}.alignnone,img.alignnone{margin-bottom:12px}a.alignleft,img.alignleft{margin:0 20px 20px 0}.search-form{overflow:hidden;position:relative}.entry-content .search-form{margin-bottom:40px;margin-top:20px}.search-form input{background:url("https://www.secondrecipe.com/wp-content/themes/seasonedpro-v444/images/search.svg") center right 10px no-repeat #fdf8f5;-webkit-background-size:contain;background-size:19px 19px;border:0;border-bottom:1px solid #fff;padding:11px}.search-form input:focus,.search-form input:hover{border:0;border-bottom:2px solid #515555}.search-form input[type=submit]{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;padding:0;position:absolute;width:1px}.entry-title{font-weight:300}.page .entry-title{margin-bottom:37px}.entry-title,.entry-title a{color:#515555;text-decoration:none}.entry-title a:focus,.entry-title a:hover{color:#ba4d2f}.widget{margin-bottom:37px;word-wrap:break-word}.widget p:last-of-type,.widget ul>li:last-of-type,.widget-area .widget:last-of-type{margin-bottom:0}.content .widget ul>li{margin-bottom:11px;padding-bottom:11px}.widget ul>li:last-of-type{padding-bottom:0}.widget li li{border:0;margin:0 0 0 31px;padding:0}.genesis-skip-link{margin:0}.genesis-skip-link li{height:0;list-style:none;width:0}@media only screen and (min-width:1023px){.site-inner{margin:20px auto 0;padding:27px 37.5px}}.site-header{background:#fff;border-bottom:1px solid #eee;min-height:55px;padding:11px 37px;top:0;text-align:center;width:100%;z-index:9999}.site-header .wrap{margin:0 auto;max-width:1065px}.site-header>.wrap>*{-webkit-transition:.4s ease-in-out;transition:all .4s ease-in-out}.title-area{float:left;padding-bottom:7px;padding-top:7px}.site-title{font-size:2em;font-weight:300;line-height:1;margin:10px 0 0}.site-title a{color:#515555;text-decoration:none}.site-title a:focus,.site-title a:hover{color:#ba4d2f;text-decoration:none}.genesis-nav-menu{clear:both;line-height:1;width:100%}.genesis-nav-menu li{float:none;list-style-type:none}.genesis-nav-menu li li{margin-left:0}.genesis-nav-menu .menu-item{display:inline-block;text-align:left;min-height:52px}.genesis-nav-menu .menu-item:focus,.genesis-nav-menu .menu-item:hover{position:relative}.genesis-nav-menu a{color:#333;display:block;font-family:Rubik,sans-serif;font-weight:400;letter-spacing:1px;padding:25px 15px}.genesis-nav-menu a:focus,.genesis-nav-menu a:hover{color:#ba4d2f}.genesis-nav-menu .menu-item:hover{position:static}.nav-primary{float:right;margin:0 auto;text-align:right;width:810px}.nav-primary .genesis-nav-menu .menu-item{vertical-align:middle}.nav-primary .alignleft{float:left}.genesis-nav-menu .simple-social-icons{margin:0 3px;vertical-align:baseline}.genesis-nav-menu .simple-social-icons li{margin:0 2px!important}.genesis-nav-menu .search-form{display:inline-block;margin-left:17px;vertical-align:middle;width:auto}.menu .menu-item.sfHover,.menu .menu-item:focus{position:static}.entry{margin-bottom:77px}.entry-content p:last-of-type{margin-bottom:0}.entry-content ul{margin-bottom:37px;margin-left:37px}.entry-content ul>li{list-style-type:disc;margin-bottom:7px}.entry-content ul ul{margin-bottom:0}p.entry-meta{color:#333;margin-bottom:31px}.entry-meta a{color:#333}.entry-meta a:focus,.entry-meta a:hover{color:#515555;text-decoration:none}.entry-footer{margin-top:27px}a.category{background:#f7f9fc;color:#333;line-height:37px;padding:3px 7px}a.category:hover{color:#515555}.dot{margin:0 11px}.sidebar{line-height:1.75}.sidebar .widget{margin-bottom:77px}.site-footer{color:#333;font-family:Rubik,sans-serif;font-weight:300;letter-spacing:1px;padding:27px 0;text-align:center;text-transform:uppercase}.site-footer a{color:#333;text-decoration:none}.site-footer a:hover{color:#515555}@media only screen and (max-width:1200px){.title-area{float:left}.nav-primary,.nav-primary .alignleft{float:none}nav{display:none;position:relative}.genesis-nav-menu{border:none}.genesis-nav-menu .menu-item{border-bottom:1px solid #eee;display:block;position:relative;text-align:left}.genesis-nav-menu .menu-item:focus,.genesis-nav-menu .menu-item:hover{position:relative}.genesis-nav-menu .search-form{margin-left:0;width:100%}.genesis-nav-menu .search-form input{background:url(https://www.secondrecipe.com/wp-content/themes/seasonedpro-v444/images/search.svg) center left 20px no-repeat #fff;-webkit-background-size:contain;background-size:19px 19px;padding:17px 17px 17px 47px}.genesis-nav-menu .simple-social-icons ul.aligncenter{text-align:left}.site-header>.wrap{position:relative}.nav-primary{clear:left}.genesis-nav-menu .menu-item.seasoned-search,.nav-primary .search-form input{border-bottom:none}}@media only screen and (max-width:1023px){.site-inner{max-width:720px}.content,.sidebar{width:100%}.site-header{padding-left:5%;padding-right:5%}.content-sidebar .content{margin-bottom:77px}.content-sidebar .content,.sidebar-primary{float:none;clear:both}}@media only screen and (max-width:782px){.site-inner{max-width:100%;padding-left:5%;padding-right:5%}}@media only screen and (min-width:1023px){.site-inner{margin:20px auto 0;padding:27px 37.5px}.genesis-nav-menu .menu-item{min-height:inherit}.entry-footer p.entry-meta,.genesis-nav-menu .search-form input,.genesis-nav-menu a,.sidebar,p.entry-meta{font-size:.8em}}:where(.wp-block-button__link).is-style-outline{border:2px solid;padding:.667em 1.333em}.wp-block-columns{display:flex;margin-bottom:1.75em;box-sizing:border-box;flex-wrap:wrap!important;align-items:normal!important}@media (min-width:782px){.wp-block-columns{flex-wrap:nowrap!important}}@media (max-width:781px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:100%!important}}@media (min-width:782px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:0;flex-grow:1}}:where(.wp-block-columns.has-background){padding:1.25em 2.375em}.wp-block-column{flex-grow:1;min-width:0;word-break:break-word;overflow-wrap:break-word}.wp-block-embed__wrapper{position:relative}.wp-block-group,ul{box-sizing:border-box}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}.has-text-align-center{text-align:center}.aligncenter{clear:both}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);-webkit-clip-path:inset(50%);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip:auto!important;-webkit-clip-path:none;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color),html :where([style*=border-width]){border-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(0.54,1.5,0.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}#wprm-timer-container{position:fixed;z-index:16777271;left:0;right:0;bottom:0;height:50px;font-size:24px;font-family:monospace,sans-serif;line-height:50px;background-color:#000;color:#fff;display:flex;align-items:center}#wprm-timer-container .wprm-timer-icon{cursor:pointer;padding:0 10px}#wprm-timer-container .wprm-timer-icon svg{display:table-cell;vertical-align:middle;width:24px;height:24px}#wprm-timer-container span{flex-shrink:0}#wprm-timer-container span#wprm-timer-bar-container{flex:1;padding:0 10px 0 15px}#wprm-timer-container span#wprm-timer-bar-container #wprm-timer-bar{display:block;border:3px solid #fff;height:24px;width:100%}#wprm-timer-container span#wprm-timer-bar-container #wprm-timer-bar #wprm-timer-bar-elapsed{display:block;height:100%;width:0%;background-color:#fff;border:0}#wprm-timer-container.wprm-timer-finished{animation:1s linear infinite wprmtimerblink}@keyframes wprmtimerblink{50%{opacity:.5}}.wprm-recipe-advanced-servings-container{margin:5px 0;display:flex;align-items:center;flex-wrap:wrap}.wprm-recipe-advanced-servings-container .wprm-recipe-advanced-servings-input-unit{margin-left:3px}.wprm-recipe-advanced-servings-container .wprm-recipe-advanced-servings-input-shape{margin-left:5px}.wprm-recipe-equipment-container,.wprm-recipe-ingredients-container,.wprm-recipe-instructions-container{counter-reset:wprm-advanced-list-counter}.wprm-recipe-equipment li{position:relative}.wprm-recipe-equipment li.wprm-checkbox-is-checked{text-decoration:line-through}.wprm-list-checkbox-container:before{display:none!important}.wprm-list-checkbox-container.wprm-list-checkbox-checked{text-decoration:line-through}.wprm-list-checkbox-container .wprm-list-checkbox:hover{cursor:pointer}.no-js .wprm-private-notes-container,.no-js .wprm-recipe-private-notes-header{display:none}.wprm-private-notes-container:not(.wprm-private-notes-container-disabled){cursor:pointer}.wprm-private-notes-container .wprm-private-notes-user{display:none;white-space:pre-wrap}.wprm-private-notes-container.wprm-private-notes-has-notes .wprm-private-notes-user{display:block}.wprm-private-notes-container.wprm-private-notes-editing .wprm-private-notes-user{display:none}.wprm-print .wprm-private-notes-container{cursor:default}.wprm-print .wprm-private-notes-container .wprm-private-notes-user{display:block!important}input[type=number].wprm-recipe-servings{display:inline;width:60px;margin:0;padding:5px}.wprm-recipe-servings-text-buttons-container{display:inline-flex}.wprm-recipe-servings-text-buttons-container input[type=text].wprm-recipe-servings{display:inline;width:40px;margin:0;padding:0;vertical-align:top;text-align:center;outline:0;border-radius:0!important}.wprm-recipe-servings-text-buttons-container .wprm-recipe-servings-change,.wprm-recipe-servings-text-buttons-container input[type=text].wprm-recipe-servings{border:1px solid #333;height:30px;user-select:none;font-size:16px}.wprm-recipe-servings-text-buttons-container .wprm-recipe-servings-change{display:inline-block;width:20px;line-height:26px;background:#333;color:#fff;text-align:center;cursor:pointer;border-radius:3px}.wprm-recipe-servings-text-buttons-container .wprm-recipe-servings-change:active{font-weight:700}.wprm-recipe-servings-text-buttons-container .wprm-recipe-servings-change.wprm-recipe-servings-decrement{border-right:none;border-top-right-radius:0!important;border-bottom-right-radius:0!important}.wprm-recipe-servings-text-buttons-container .wprm-recipe-servings-change.wprm-recipe-servings-increment{border-left:none;border-top-left-radius:0!important;border-bottom-left-radius:0!important}.simple-social-icons svg[class*=" social-"],.simple-social-icons svg[class^=social-]{display:inline-block;width:1em;height:1em;stroke-width:0;stroke:currentColor;fill:currentColor}.simple-social-icons{overflow:hidden}.simple-social-icons ul{margin:0;padding:0}.simple-social-icons ul li{background:0 0!important;border:none!important;float:left;list-style-type:none!important;margin:0 6px 12px!important;padding:0!important}.simple-social-icons ul li a{border:none!important;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;display:inline-block;font-style:normal!important;font-variant:normal!important;font-weight:400!important;height:1em;line-height:1em;text-align:center;text-decoration:none!important;text-transform:none!important;width:1em}.simple-social-icons ul.aligncenter{text-align:center}.simple-social-icons ul.aligncenter li{display:inline-block;float:none}.simple-social-icons .screen-reader-text{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%}.rll-youtube-player:focus-within{outline:currentColor solid 2px;outline-offset:5px}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s;-moz-transition:.4s;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://www.secondrecipe.com/wp-content/plugins/wp-rocket/assets/img/youtube.png) center no-repeat;background-color:transparent!important;cursor:pointer;border:none}.feast-about-author{background-color:#f2f2f2;color:#32373c;padding:17px;margin-top:57px;display:grid;grid-template-columns:1fr 3fr!important}.feast-about-author h2{margin-top:7px!important}.feast-about-author img{border-radius:50%!important}aside .feast-about-author{grid-template-columns:1fr!important}.screen-reader-text{width:1px;height:1px}.site-footer ul li,footer ul li{list-style-type:none}aside input{min-height:50px}aside div,aside p,aside ul{margin:17px 0}@media only screen and (max-width:600px){aside input{min-height:50px;margin-bottom:17px}}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px;--feast-branding-primary:#000000;--feast-branding-primary-background: ;--feast-branding-secondary:#000000;--feast-branding-secondary-background: ;--mv-create-radius:0}.feast-category-index-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-gap:57px 17px;list-style:none;list-style-type:none;margin:17px 0!important}.feast-category-index-list li{min-height:150px;text-align:center;position:relative;list-style:none!important;margin-left:0!important;list-style-type:none!important;overflow:hidden}.feast-category-index-list li a.title{text-decoration:none}.listing-item:focus-within{outline:#555 solid 2px}.listing-item a:focus,.listing-item a:focus .fsri-title,.listing-item a:focus img{opacity:.8;outline:0}li.listing-item:before{content:none!important}.listing-item{display:grid}.feast-grid-fifth,.feast-grid-half{display:grid;grid-gap:57px 17px}.feast-grid-half{grid-template-columns:repeat(2,minmax(0,1fr))!important}.feast-grid-fifth{grid-template-columns:repeat(5,minmax(0,1fr))!important}@media only screen and (min-width:600px){.feast-category-index-list{grid-template-columns:repeat(4,minmax(0,1fr))}.feast-desktop-grid-half{grid-template-columns:repeat(2,1fr)!important}.feast-desktop-grid-fifth{grid-template-columns:repeat(5,1fr)!important}}body{--wp--preset--color--black:#000000;--wp--preset--color--cyan-bluish-gray:#abb8c3;--wp--preset--color--white:#ffffff;--wp--preset--color--pale-pink:#f78da7;--wp--preset--color--vivid-red:#cf2e2e;--wp--preset--color--luminous-vivid-orange:#ff6900;--wp--preset--color--luminous-vivid-amber:#fcb900;--wp--preset--color--light-green-cyan:#7bdcb5;--wp--preset--color--vivid-green-cyan:#00d084;--wp--preset--color--pale-cyan-blue:#8ed1fc;--wp--preset--color--vivid-cyan-blue:#0693e3;--wp--preset--color--vivid-purple:#9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple:linear-gradient(135deg,rgba(6, 147, 227, 1) 0%,rgb(155, 81, 224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan:linear-gradient(135deg,rgb(122, 220, 180) 0%,rgb(0, 208, 130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange:linear-gradient(135deg,rgba(252, 185, 0, 1) 0%,rgba(255, 105, 0, 1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red:linear-gradient(135deg,rgba(255, 105, 0, 1) 0%,rgb(207, 46, 46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray:linear-gradient(135deg,rgb(238, 238, 238) 0%,rgb(169, 184, 195) 100%);--wp--preset--gradient--cool-to-warm-spectrum:linear-gradient(135deg,rgb(74, 234, 220) 0%,rgb(151, 120, 209) 20%,rgb(207, 42, 186) 40%,rgb(238, 44, 130) 60%,rgb(251, 105, 98) 80%,rgb(254, 248, 76) 100%);--wp--preset--gradient--blush-light-purple:linear-gradient(135deg,rgb(255, 206, 236) 0%,rgb(152, 150, 240) 100%);--wp--preset--gradient--blush-bordeaux:linear-gradient(135deg,rgb(254, 205, 165) 0%,rgb(254, 45, 45) 50%,rgb(107, 0, 62) 100%);--wp--preset--gradient--luminous-dusk:linear-gradient(135deg,rgb(255, 203, 112) 0%,rgb(199, 81, 192) 50%,rgb(65, 88, 208) 100%);--wp--preset--gradient--pale-ocean:linear-gradient(135deg,rgb(255, 245, 203) 0%,rgb(182, 227, 212) 50%,rgb(51, 167, 181) 100%);--wp--preset--gradient--electric-grass:linear-gradient(135deg,rgb(202, 248, 128) 0%,rgb(113, 206, 126) 100%);--wp--preset--gradient--midnight:linear-gradient(135deg,rgb(2, 3, 129) 0%,rgb(40, 116, 252) 100%);--wp--preset--duotone--dark-grayscale:url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale:url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow:url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red:url('#wp-duotone-blue-red');--wp--preset--duotone--midnight:url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow:url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green:url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange:url('#wp-duotone-blue-orange');--wp--preset--font-size--small:13px;--wp--preset--font-size--medium:20px;--wp--preset--font-size--large:36px;--wp--preset--font-size--x-large:42px;-webkit-animation:none!important;animation:none!important;font-size:18px}@-webkit-keyframes openmenu{from{left:-100px;opacity:0}to{left:0;opacity:1}}@-webkit-keyframes closebutton{0%{opacity:0}100%{opacity:1}}@keyframes openmenu{from{left:-100px;opacity:0}to{left:0;opacity:1}}@keyframes closebutton{0%{opacity:0}100%{opacity:1}}.feastmobilemenu-background{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.feastmobilemenu-background:target{display:table;position:fixed}.mmm-dialog{display:table-cell;vertical-align:top;font-size:20px}.mmm-dialog .mmm-content{margin:0;padding:10px 10px 10px 20px;position:fixed;left:0;background-color:#fefefe;contain:strict;overflow-x:hidden;overflow-y:auto;outline:0;border-right:1px solid #777;border-bottom:1px solid #777;text-align:justify;width:320px;height:90%;box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:openmenu;-webkit-animation-duration:.6s;animation-name:openmenu;animation-duration:.6s}.mmm-content li{list-style:none}#menu-feast-modern-mobile-menu li{min-height:50px;margin-left:5px;list-style:none}#menu-feast-modern-mobile-menu li a{color:inherit;text-decoration:inherit}.closebtn{text-decoration:none;float:right;margin-right:10px;font-size:50px;font-weight:700;color:#333;z-index:1001;top:0;position:fixed;left:270px;-webkit-animation-name:closebutton;-webkit-animation-duration:1.5s;animation-name:closebutton;animation-duration:1.5s}.closebtn:focus,.closebtn:hover{color:#555;cursor:pointer}@media (prefers-reduced-motion){.closebtn,.mmm-dialog .mmm-content{animation:none!important}}#mmmlogo{max-width:200px;max-height:70px}#feast-mobile-search{margin-bottom:17px;min-height:50px;overflow:auto}#feast-mobile-search input[type=submit]{display:none}#feast-mobile-search input[type=search]{width:100%}#feast-mobile-menu-social-icons{margin-top:17px}#feast-social .simple-social-icons{list-style:none;margin:0!important}.feastmobilenavbar{position:fixed;top:0;left:0;z-index:998;width:100%;height:80px;padding:0;margin:0 auto;box-sizing:border-box;border-top:1px solid #ccc;border-bottom:1px solid #ccc;background:#fff;display:grid;grid-template-columns:repeat(7,minmax(50px,1fr));text-align:center;contain:strict;overflow:hidden}.feastmobilenavbar>div{height:80px}.feastmobilenavbar a img{margin-bottom:inherit!important}.feastmenutoggle,.feastsearchtoggle{display:flex;align-items:center;justify-items:center;justify-content:center}.feastmenutoggle svg,.feastsearchtoggle svg{width:30px;height:30px;padding:10px;box-sizing:content-box;color:#000}.feastmenulogo{overflow:hidden;display:flex;align-items:center;justify-content:center;grid-column-end:span 5}.desktop-inline-modern-menu,.modern-menu-desktop-social{display:none}@media only screen and (min-width:1200px){.desktop-inline-modern-menu,.modern-menu-desktop-social{display:block}.feastmobilenavbar .feastmenutoggle{display:none}.feastmobilenavbar{grid-template-columns:1fr 3fr 1fr 50px!important;width:100%;left:0;padding-left:calc(50% - 550px);padding-right:calc(50% - 550px)}.feastmenulogo{grid-column-end:span 1!important}.desktop-inline-modern-menu ul{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;height:70px;overflow:hidden;margin:0 17px}.desktop-inline-modern-menu ul li{display:flex;justify-content:center;align-items:center;min-height:70px}.desktop-inline-modern-menu ul li:nth-child(n+6),.modern-menu-desktop-social .simple-social-icons li:nth-child(n+4){display:none}.modern-menu-desktop-social{display:flex!important;justify-content:center;align-items:center}.feastmobilenavbar a{color:#000;text-decoration:none}}@media only screen and (max-width:1199px){.feastmenulogo{grid-column-end:span 5}}.nav-primary,header.site-header{display:none!important;visibility:hidden}.site-container{margin-top:80px}@media print{.feastmobilenavbar{position:static}}@media only screen and (min-width:1200px){#genesis-content{min-width:728px}}body,h2,h3{font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"!important}.site-title a{font-size:28px}@media only screen and (max-width:359px){.feastmobilenavbar{grid-template-columns:repeat(6,minmax(50px,1fr))}.feastmenulogo{grid-column-end:span 4}.site-inner{padding-left:10px!important;padding-right:10px!important}main#genesis-content{padding-left:0!important;padding-right:0!important}}#simple-social-icons-3 ul li a,#simple-social-icons-3 ul li a:focus,#simple-social-icons-3 ul li a:hover{background-color:#fff!important;border-radius:27px;color:#ba4d2f!important;border:1px solid #ba4d2f!important;font-size:14px;padding:7px}#simple-social-icons-3 ul li a:focus,#simple-social-icons-3 ul li a:hover{background-color:#ba4d2f!important;border-color:#ba4d2f!important;color:#fff!important}#simple-social-icons-3 ul li a:focus{outline:#ba4d2f dotted 1px!important}.wp-container-3>.alignleft{float:left;margin-inline-start:0;margin-inline-end:2em}.wp-container-3>.aligncenter{margin-left:auto!important;margin-right:auto!important}.wp-container-4>.alignleft{float:left;margin-inline-start:0;margin-inline-end:2em}.wp-container-4>.aligncenter{margin-left:auto!important;margin-right:auto!important}.wp-container-5>.alignleft{float:left;margin-inline-start:0;margin-inline-end:2em}.wp-container-5>.aligncenter{margin-left:auto!important;margin-right:auto!important}.wp-container-6{display:flex;gap:2em;flex-wrap:nowrap;align-items:center}.wp-container-6>*{margin:0}.web-stories-embed.alignleft,.web-stories-embed.alignnone{display:block;width:100%}.web-stories-embed.aligncenter{text-align:initial}.web-stories-embed .wp-block-embed__wrapper{position:relative}.web-stories-embed.alignleft .wp-block-embed__wrapper{margin-right:auto}.web-stories-embed.aligncenter .wp-block-embed__wrapper{margin-left:auto;margin-right:auto;max-width:var(--width)}.web-stories-embed:not(.web-stories-embed-amp) .wp-block-embed__wrapper:before{content:"";display:block;padding-bottom:calc(var(--aspect-ratio)*100%)}.web-stories-embed:not(.web-stories-embed-amp) .wp-block-embed__wrapper amp-story-player{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}</style>
+	<meta name="description" content="Air fryer baby potatoes are a delicious and healthy alternative to traditional fried potatoes. They are crispy on the outside and fluffy on the inside, and they can be made in just a few minutes." />
+	<link rel="canonical" href="https://www.secondrecipe.com/web-stories/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Stories Archive" />
+	<meta property="og:url" content="https://www.secondrecipe.com/web-stories/" />
+	<meta property="og:site_name" content="SecondRecipe" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@secondrecipe" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://www.secondrecipe.com/web-stories/","url":"https://www.secondrecipe.com/web-stories/","name":"Stories Archive - SecondRecipe","isPartOf":{"@id":"https://www.secondrecipe.com/#website"},"breadcrumb":{"@id":"https://www.secondrecipe.com/web-stories/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://www.secondrecipe.com/web-stories/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.secondrecipe.com/"},{"@type":"ListItem","position":2,"name":"Stories"}]},{"@type":"WebSite","@id":"https://www.secondrecipe.com/#website","url":"https://www.secondrecipe.com/","name":"SecondRecipe","description":"Easy Vegan and Vegetarian Recipes","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.secondrecipe.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdn.ampproject.org' />
+<link rel='dns-prefetch' href='//js.makestories.io' />
+<link rel='dns-prefetch' href='//scripts.mediavine.com' />
+<link rel='dns-prefetch' href='//maps.googleapis.com' />
+<link rel='dns-prefetch' href='//maps.gstatic.com' />
+
+<link rel='dns-prefetch' href='//fonts.gstatic.com' />
+<link rel='dns-prefetch' href='//ajax.googleapis.com' />
+<link rel='dns-prefetch' href='//apis.google.com' />
+<link rel='dns-prefetch' href='//google-analytics.com' />
+<link rel='dns-prefetch' href='//www.google-analytics.com' />
+<link rel='dns-prefetch' href='//ssl.google-analytics.com' />
+<link rel='dns-prefetch' href='//youtube.com' />
+<link rel='dns-prefetch' href='//api.pinterest.com' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//pixel.wp.com' />
+<link rel='dns-prefetch' href='//connect.facebook.net' />
+<link rel='dns-prefetch' href='//platform.twitter.com' />
+<link rel='dns-prefetch' href='//syndication.twitter.com' />
+<link rel='dns-prefetch' href='//platform.instagram.com' />
+<link rel='dns-prefetch' href='//disqus.com' />
+<link rel='dns-prefetch' href='//sitename.disqus.com' />
+<link rel='dns-prefetch' href='//s7.addthis.com' />
+<link rel='dns-prefetch' href='//w.sharethis.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s.gravatar.com' />
+<link rel='dns-prefetch' href='//0.gravatar.com' />
+<link rel='dns-prefetch' href='//2.gravatar.com' />
+<link rel='dns-prefetch' href='//1.gravatar.com' />
+<link rel='dns-prefetch' href='//stats.wp.com' />
+<link rel='dns-prefetch' href='//ads.blogherads.com' />
+<link rel='dns-prefetch' href='//www.secondrecipe.com' />
+<link rel='dns-prefetch' href='//cdn.secondrecipe.com' />
+
+<link rel="alternate" type="application/rss+xml" title="SecondRecipe &raquo; Stories Feed" href="https://www.secondrecipe.com/web-stories/feed/" />
+
+
+
+
+<style id='global-styles-inline-css'></style>
+
+
+
+
+<noscript><link data-minify="1" rel='stylesheet' id='dpsp-frontend-style-pro-css' href='https://www.secondrecipe.com/wp-content/cache/min/1/wp-content/plugins/social-pug/assets/dist/style-frontend-pro.1.20.3.css?ver=1678363690' media='all' />
+</noscript>
+
+<style id='rocket-lazyload-inline-css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://www.secondrecipe.com/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+</style>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/amp-story-player-v0.js?ver=1662247158' id='amp-story-player-js' defer></script>
+<script async="async" data-noptimize="1" data-cfasync="false" src='https://scripts.mediavine.com/tags/secondrecipe.js?ver=6.2.2' id='mv-script-wrapper-js'></script>
+<style id='feast-blockandfront-styles'></style>
+<style id='feast-modern-branding'></style>
+<style type="text/css"></style>		<style></style>
+		<style type="text/css" data-source="Grow Social by Mediavine"></style><style type="text/css"></style><style type="text/css"></style>
+<!-- Global secondrecipe site tag (gtag.js) - Google Analytics -->
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=UA-46797431-2"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-46797431-2');
+</script>
+
+<!--
+<script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6382914376419450"
+     crossorigin="anonymous"></script>
+-->
+
+<link rel="icon" href="https://www.secondrecipe.com/wp-content/themes/seasonedpro-v444/images/favicon.ico" />
+<link rel="pingback" href="https://www.secondrecipe.com/xmlrpc.php" />
+<style type="text/css"></style>	<style></style>
+
+		<style id='feast-system-fonts'></style>
+	<style id="feast-edit-font-sizes"></style>	<style id='feast-increase-content-width'></style>
+			<style id="wp-custom-css"></style>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+<body class="archive post-type-archive post-type-archive-web-story feast-plugin header-full-width content-sidebar genesis-breadcrumbs-hidden genesis-footer-widgets-hidden seasoned-pro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div class="site-container"><ul class="genesis-skip-link"><li><a href="#genesis-nav-primary" class="screen-reader-shortcut"> Skip to primary navigation</a></li><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to main content</a></li><li><a href="#genesis-sidebar-primary" class="screen-reader-shortcut"> Skip to primary sidebar</a></li></ul><header class="site-header"><div class="wrap"><div class="title-area"><div class="site-title"><a href="https://www.secondrecipe.com/">SecondRecipe</a></div></div><nav class="nav-primary" aria-label="Main" id="genesis-nav-primary"><div class="wrap"><ul id="menu-brunch-theme-main-menu" class="menu genesis-nav-menu menu-primary js-superfish"><li id="menu-item-11329" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11329"><a href="https://www.secondrecipe.com"><span >Home</span></a></li>
+<li id="menu-item-11327" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11327"><a href="https://www.secondrecipe.com/recipes/"><span >Recipes</span></a></li>
+<li id="menu-item-11347" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-11347"><a href="https://www.secondrecipe.com/web-stories/" aria-current="page"><span >Web Stories</span></a></li>
+<li id="menu-item-13981" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13981"><a href="https://www.secondrecipe.com/about-us/"><span >About Us</span></a></li>
+<li id="menu-item-48073" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-48073"><a href="https://www.secondrecipe.com/contact-us/"><span >Contact Us</span></a></li>
+<li id="seasoned-search" class="seasoned-search menu-item"><form class="search-form" method="get" action="https://www.secondrecipe.com/" role="search"><label class="search-form-label screen-reader-text" for="searchform-1">search...</label><input class="search-form-input" type="search" name="s" id="searchform-1" placeholder="search..."><input class="search-form-submit" type="submit" value="Search"><meta content="https://www.secondrecipe.com/?s={s}"></form></li></ul></div></nav></div></header><div class="feastmobilenavbar"><div class="feastmenutoggle"><a href="#feastmobilemenu"><?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Capa_1" xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve" aria-labelledby="menuicon" role="img">
+	<title id="menuicon">menu icon</title>
+	<g id="menu">
+		<path fill="currentColor" d="M0,382.5h459v-51H0V382.5z M0,255h459v-51H0V255z M0,76.5v51h459v-51H0z"/>
+	</g>
+</svg>
+</a></div><div class="feastmenulogo"><a href="https://www.secondrecipe.com"><img src="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg" srcset="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg 2x" alt="go to homepage" data-skip-lazy data-pin-nopin="true" height="70" width="200" /></a></div><nav class='desktop-inline-modern-menu'><ul id="menu-feast-modern-mobile-menu" class="menu"><li id="menu-item-13196" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13196"><a href="https://www.secondrecipe.com/recipes/">Recipes</a></li>
+<li id="menu-item-25873" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-25873"><a href="https://www.secondrecipe.com/web-stories/" aria-current="page">Web Stories</a></li>
+<li id="menu-item-13198" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13198"><a href="https://www.secondrecipe.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-13982" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13982"><a href="https://www.secondrecipe.com/about-us/">About Us</a></li>
+<li id="menu-item-49190" class="grow-click-to-subscribe-widget-f993424f-9ad7-4bfb-a389-21bad9be363b menu-item menu-item-type-custom menu-item-object-custom menu-item-49190"><a href="#subscribe">Subscribe</a></li>
+</ul></nav><div class='modern-menu-desktop-social'><div id="feast-social"><li id="simple-social-icons-3" class="widget simple-social-icons"><ul class="aligncenter"><li class="ssi-facebook"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//facebook.com/secondrecipe" ><svg role="img" class="social-facebook" aria-labelledby="social-facebook-3"><title id="social-facebook-3">Facebook</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-facebook"></use></svg></a></li><li class="ssi-instagram"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//instagram.com/secondrecipe" ><svg role="img" class="social-instagram" aria-labelledby="social-instagram-3"><title id="social-instagram-3">Instagram</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-instagram"></use></svg></a></li><li class="ssi-pinterest"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//pinterest.com/secondrecipe" ><svg role="img" class="social-pinterest" aria-labelledby="social-pinterest-3"><title id="social-pinterest-3">Pinterest</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-pinterest"></use></svg></a></li></ul></li>
+</div></div><div class="feastsearchtoggle"><a href="#feastmobilemenu"><svg xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" xml:space="preserve" xmlns:svg="//www.w3.org/2000/svg" version="1.1" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 100 100" aria-labelledby="searchicon" role="img">
+  <title id="searchicon">search icon</title>
+  <g transform="translate(0,-952.36218)">
+    <path fill="currentColor" d="M 40 11 C 24.007431 11 11 24.00743 11 40 C 11 55.9926 24.007431 69 40 69 C 47.281794 69 53.935267 66.28907 59.03125 61.84375 L 85.59375 88.40625 C 86.332786 89.16705 87.691654 89.1915 88.4375 88.4375 C 89.183345 87.6834 89.175154 86.2931 88.40625 85.5625 L 61.875 59.03125 C 66.312418 53.937244 69 47.274551 69 40 C 69 24.00743 55.992569 11 40 11 z M 40 15 C 53.830808 15 65 26.16919 65 40 C 65 53.8308 53.830808 65 40 65 C 26.169192 65 15 53.8308 15 40 C 15 26.16919 26.169192 15 40 15 z " transform="translate(0,952.36218)">
+    </path>
+  </g>
+</svg>
+</a></div></div><div id="feastmobilemenu" class="feastmobilemenu-background" aria-label="main"><div class="mmm-dialog"><div class="mmm-content"><a href="https://www.secondrecipe.com"><img width="800" height="266" id="mmmlogo" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20266'%3E%3C/svg%3E" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg 2x" alt="Homepage link" data-pin-nopin="true" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg" /><noscript><img width="800" height="266" id="mmmlogo" src="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg" srcset="https://www.secondrecipe.com/wp-content/uploads/2020/06/Logo_white.jpg 2x" alt="Homepage link" data-pin-nopin="true" /></noscript></a><div id="feast-mobile-search"><form class="search-form" method="get" action="https://www.secondrecipe.com/" role="search"><label class="search-form-label screen-reader-text" for="searchform-2">search...</label><input class="search-form-input" type="search" name="s" id="searchform-2" placeholder="search..."><input class="search-form-submit" type="submit" value="Search"><meta content="https://www.secondrecipe.com/?s={s}"></form></div><ul id="menu-feast-modern-mobile-menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13196"><a href="https://www.secondrecipe.com/recipes/">Recipes</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-25873"><a href="https://www.secondrecipe.com/web-stories/" aria-current="page">Web Stories</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13198"><a href="https://www.secondrecipe.com/contact-us/">Contact Us</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13982"><a href="https://www.secondrecipe.com/about-us/">About Us</a></li>
+<li class="grow-click-to-subscribe-widget-f993424f-9ad7-4bfb-a389-21bad9be363b menu-item menu-item-type-custom menu-item-object-custom menu-item-49190"><a href="#subscribe">Subscribe</a></li>
+</ul><div id="feast-mobile-menu-social-icons"><div id="feast-social"><li id="simple-social-icons-3" class="widget simple-social-icons"><ul class="aligncenter"><li class="ssi-facebook"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//facebook.com/secondrecipe" ><svg role="img" class="social-facebook" aria-labelledby="social-facebook-3"><title id="social-facebook-3">Facebook</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-facebook"></use></svg></a></li><li class="ssi-instagram"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//instagram.com/secondrecipe" ><svg role="img" class="social-instagram" aria-labelledby="social-instagram-3"><title id="social-instagram-3">Instagram</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-instagram"></use></svg></a></li><li class="ssi-pinterest"><a data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="//pinterest.com/secondrecipe" ><svg role="img" class="social-pinterest" aria-labelledby="social-pinterest-3"><title id="social-pinterest-3">Pinterest</title><use xlink:data-wpel-link="ignore" target="_blank" rel="noopener noreferrer" href="https://www.secondrecipe.com/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-pinterest"></use></svg></a></li></ul></li>
+</div></div><a href="#" class="closebtn">×</a></div></div></div><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"><p id="breadcrumbs"><span><span><a href="https://www.secondrecipe.com/">Home</a></span></span></p><article class="post-44176 web-story type-web-story status-publish entry has-post-thumbnail" aria-label="air fryer baby potatoes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/air-fryer-baby-potatoes/">air fryer baby potatoes</a></h2>
+<p class="entry-meta"><time class="entry-time">Jun 21, 2023</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/air-fryer-baby-potatoes/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="easy crispy baby potatoes" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-360x480.jpg" class="alignleft post-image entry-image" alt="easy crispy baby potatoes" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/easy-crispy-baby-potatoes-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/air-fryer-baby-potatoes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="air fryer baby potatoes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/04/cropped-Air-fryer-baby-potatoes.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/04/cropped-Air-fryer-baby-potatoes.jpg"
+								width="360"
+								height="600"
+								alt="air fryer baby potatoes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-44069 web-story type-web-story status-publish entry" aria-label="air fryer potato cakes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/potato-cakes/">air fryer potato cakes</a></h2>
+<p class="entry-meta"><time class="entry-time">May 6, 2023</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/potato-cakes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="air fryer potato cakes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/04/cropped-air-fryer-potato-cakes-recipe.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/04/cropped-air-fryer-potato-cakes-recipe.jpg"
+								width="360"
+								height="600"
+								alt="air fryer potato cakes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-33787 web-story type-web-story status-publish has-post-thumbnail entry" aria-label="30+ Indian  Air Fryer Recipes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/indian-air-fryer-recipes/">30+ Indian  Air Fryer Recipes</a></h2>
+<p class="entry-meta"><time class="entry-time">Apr 30, 2023</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/indian-air-fryer-recipes/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="indian air fryer recipes collage" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-150x200.jpg 150w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg" class="alignleft post-image entry-image" alt="indian air fryer recipes collage" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-150x200.jpg 150w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/indian-air-fryer-recipes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="30+ Indian  Air Fryer Recipes"
+																 data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-150x200.jpg 150w"
+																								 data-lazy-sizes="(max-width: 640px) 100vw, 640px"
+															
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-640x853.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-640x853.jpg"
+								width="360"
+								height="600"
+								alt="30+ Indian  Air Fryer Recipes"
+																	srcset="https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2023/05/cropped-indian-air-fryer-recipes-collage-150x200.jpg 150w"
+																									sizes="(max-width: 640px) 100vw, 640px"
+																loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25797 web-story type-web-story status-publish entry" aria-label="Jalebi"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/jalebi/">Jalebi</a></h2>
+<p class="entry-meta"><time class="entry-time">Apr 27, 2023</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/jalebi/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Jalebi"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/02/jalebi-ws.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/02/jalebi-ws.jpg"
+								width="360"
+								height="600"
+								alt="Jalebi"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-38601 web-story type-web-story status-publish entry" aria-label="Quick vegetarian dinner recipes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/quick-veg-dinner-recipes/">Quick vegetarian dinner recipes</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 2, 2023</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/quick-veg-dinner-recipes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Quick vegetarian dinner recipes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/01/cropped-5-quick-veg-dinner-recipes.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/01/cropped-5-quick-veg-dinner-recipes.jpg"
+								width="360"
+								height="600"
+								alt="Quick vegetarian dinner recipes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-50460 web-story type-web-story status-publish has-post-thumbnail entry" aria-label="Vegan Christmas recipes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/vegan-christmas-recipes/">Vegan Christmas recipes</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 20, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/vegan-christmas-recipes/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="air fryer Christmas potatoes" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-150x200.jpg 150w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg" class="alignleft post-image entry-image" alt="air fryer Christmas potatoes" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-150x200.jpg 150w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/vegan-christmas-recipes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Vegan Christmas recipes"
+																 data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-150x200.jpg 150w"
+																								 data-lazy-sizes="(max-width: 640px) 100vw, 640px"
+															
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-640x853.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-640x853.jpg"
+								width="360"
+								height="600"
+								alt="Vegan Christmas recipes"
+																	srcset="https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/11/cropped-air-fryer-Christmas-potatoes-150x200.jpg 150w"
+																									sizes="(max-width: 640px) 100vw, 640px"
+																loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-44282 web-story type-web-story status-publish entry" aria-label="air fryer baked potatoes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/air-fryer-baked-potatoes/">air fryer baked potatoes</a></h2>
+<p class="entry-meta"><time class="entry-time">May 6, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/air-fryer-baked-potatoes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="air fryer baked potatoes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/03/cropped-cropped-air-fryer-baked-potato.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/03/cropped-cropped-air-fryer-baked-potato.jpg"
+								width="360"
+								height="600"
+								alt="air fryer baked potatoes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-40233 web-story type-web-story status-publish entry" aria-label="Air fryer hasselback potatoes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/air-fryer-hasselback-potatoes/">Air fryer hasselback potatoes</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 13, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/air-fryer-hasselback-potatoes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Air fryer hasselback potatoes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/02/cropped-accordian-potatoes.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/02/cropped-accordian-potatoes.jpg"
+								width="360"
+								height="600"
+								alt="Air fryer hasselback potatoes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-38950 web-story type-web-story status-publish entry" aria-label="Vegan Spinach Pasta"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/vegan-spinach-pasta/">Vegan Spinach Pasta</a></h2>
+<p class="entry-meta"><time class="entry-time">Jan 31, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/vegan-spinach-pasta/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Vegan Spinach Pasta"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/01/cropped-vegan-spinach-pesto-pasta.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2022/01/cropped-vegan-spinach-pesto-pasta.jpg"
+								width="360"
+								height="600"
+								alt="Vegan Spinach Pasta"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-37477 web-story type-web-story status-publish entry" aria-label="Homemade potato chips"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/homemade-potato-chips/">Homemade potato chips</a></h2>
+<p class="entry-meta"><time class="entry-time">Jan 26, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/homemade-potato-chips/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Homemade potato chips"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/04/cropped-home-made-potato-chips-1.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/04/cropped-home-made-potato-chips-1.jpg"
+								width="360"
+								height="600"
+								alt="Homemade potato chips"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25937 web-story type-web-story status-publish entry" aria-label="Matar Paneer"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/matar-paneer/">Matar Paneer</a></h2>
+<p class="entry-meta"><time class="entry-time">Jan 12, 2022</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/matar-paneer/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Matar Paneer"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2018/03/matar-paneer.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2018/03/matar-paneer.jpg"
+								width="360"
+								height="600"
+								alt="Matar Paneer"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25515 web-story type-web-story status-publish entry" aria-label="Moong Dal Halwa"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/moong-dal-halwa/">Moong Dal Halwa</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 29, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/moong-dal-halwa/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Moong Dal Halwa"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/01/moong-dal-halwa-easy-recipe.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/01/moong-dal-halwa-easy-recipe.jpg"
+								width="360"
+								height="600"
+								alt="Moong Dal Halwa"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25604 web-story type-web-story status-publish entry" aria-label="Chole bhature"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/chole-bhature/">Chole bhature</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 28, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/chole-bhature/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Chole bhature"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/02/chole-bhatura.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/02/chole-bhatura.jpg"
+								width="360"
+								height="600"
+								alt="Chole bhature"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26048 web-story type-web-story status-publish entry" aria-label="Amla candy"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/amla-candy/">Amla candy</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 28, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/amla-candy/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Amla candy"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/11/amla-candy-2020.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2019/11/amla-candy-2020.jpg"
+								width="360"
+								height="600"
+								alt="Amla candy"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26369 web-story type-web-story status-publish entry" aria-label="batata vada"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/batata-vada/">batata vada</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 27, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/batata-vada/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="batata vada"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/03/batata-vada-2.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/03/batata-vada-2.jpg"
+								width="360"
+								height="600"
+								alt="batata vada"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26656 web-story type-web-story status-publish entry" aria-label="Kadha for sore throat,cold &#038; cough"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/kadha-for-sore-thrat/">Kadha for sore throat,cold &#038; cough</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 25, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/kadha-for-sore-thrat/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Kadha for sore throat,cold &#038; cough"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/07/kada.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2019/07/kada.jpg"
+								width="360"
+								height="600"
+								alt="Kadha for sore throat,cold &#038; cough"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25985 web-story type-web-story status-publish has-post-thumbnail entry" aria-label="Sabudana khichdi"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/sabudana-khichdi/">Sabudana khichdi</a></h2>
+<p class="entry-meta"><time class="entry-time">Dec 24, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/sabudana-khichdi/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="cropped-sabudana-khichdi.jpg" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-150x200.jpg 150w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg" class="alignleft post-image entry-image" alt="cropped-sabudana-khichdi.jpg" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-150x200.jpg 150w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/sabudana-khichdi/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Sabudana khichdi"
+																 data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-150x200.jpg 150w"
+																								 data-lazy-sizes="(max-width: 640px) 100vw, 640px"
+															
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-640x853.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-640x853.jpg"
+								width="360"
+								height="600"
+								alt="Sabudana khichdi"
+																	srcset="https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-480x640.jpg 480w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2019/10/cropped-sabudana-khichdi-150x200.jpg 150w"
+																									sizes="(max-width: 640px) 100vw, 640px"
+																loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-31260 web-story type-web-story status-publish entry has-post-thumbnail" aria-label="Modak Recipes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/modak-recipes/">Modak Recipes</a></h2>
+<p class="entry-meta"><time class="entry-time">Sep 12, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/modak-recipes/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-360x480.png 360w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-720x960.png 720w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-180x240.png 180w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-640x853.png 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-360x480.png" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-360x480.png" class="alignleft post-image entry-image" alt="" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-360x480.png 360w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-720x960.png 720w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-180x240.png 180w, https://www.secondrecipe.com/wp-content/uploads/2021/09/modak-collage-640x853.png 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/modak-recipes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Modak Recipes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/09/cropped-modak-collage.png"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/09/cropped-modak-collage.png"
+								width="360"
+								height="600"
+								alt="Modak Recipes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-28594 web-story type-web-story status-publish entry" aria-label="Easy ice cream recipes"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/easy-ice-cream/">Easy ice cream recipes</a></h2>
+<p class="entry-meta"><time class="entry-time">Jun 10, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/easy-ice-cream/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Easy ice cream recipes"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/06/easy-ice-cream-recipes.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/06/easy-ice-cream-recipes.jpg"
+								width="360"
+								height="600"
+								alt="Easy ice cream recipes"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-28175 web-story type-web-story status-publish entry" aria-label="Easy Indian Pickles"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/easy-indian-pickles/">Easy Indian Pickles</a></h2>
+<p class="entry-meta"><time class="entry-time">Jun 1, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/easy-indian-pickles/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Easy Indian Pickles"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2017/03/carrot-cauliflower-pickle.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2017/03/carrot-cauliflower-pickle.jpg"
+								width="360"
+								height="600"
+								alt="Easy Indian Pickles"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-27317 web-story type-web-story status-publish entry" aria-label="Easy fasting recipes -upwas food"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/easy-fasting-upvas-recipes/">Easy fasting recipes -upwas food</a></h2>
+<p class="entry-meta"><time class="entry-time">Apr 16, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/easy-fasting-upvas-recipes/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Easy fasting recipes -upwas food"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/04/Lightroom17.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/04/Lightroom17.jpg"
+								width="360"
+								height="600"
+								alt="Easy fasting recipes -upwas food"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26973 web-story type-web-story status-publish has-post-thumbnail entry" aria-label="Thandai masala"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/thandai-masala/">Thandai masala</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 28, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content"><a class="entry-image-link" href="https://www.secondrecipe.com/web-stories/thandai-masala/" aria-hidden="true" tabindex="-1"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class="alignleft post-image entry-image" alt="thandai powder" decoding="async" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-360x480.jpg" class="alignleft post-image entry-image" alt="thandai powder" decoding="async" srcset="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a>		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/thandai-masala/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Thandai masala"
+																 data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-491x640.jpg 491w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-691x900.jpg 691w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-150x195.jpg 150w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-735x958.jpg 735w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder.jpg 1000w"
+																								 data-lazy-sizes="(max-width: 1000px) 100vw, 1000px"
+															
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-640x853.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-640x853.jpg"
+								width="360"
+								height="600"
+								alt="Thandai masala"
+																	srcset="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-491x640.jpg 491w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-691x900.jpg 691w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-150x195.jpg 150w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder-735x958.jpg 735w, https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder.jpg 1000w"
+																									sizes="(max-width: 1000px) 100vw, 1000px"
+																loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26789 web-story type-web-story status-publish entry" aria-label="Gujiya"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/gujiya/">Gujiya</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 22, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/gujiya/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Gujiya"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/03/wholewheat-mawa-gujiya-2021-001.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/03/wholewheat-mawa-gujiya-2021-001.jpg"
+								width="360"
+								height="600"
+								alt="Gujiya"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26470 web-story type-web-story status-publish entry" aria-label="Ragi Biscuits"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/ragi-biscuits/">Ragi Biscuits</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 15, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/ragi-biscuits/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Ragi Biscuits"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/03/ragi-biscuits.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/03/ragi-biscuits.jpg"
+								width="360"
+								height="600"
+								alt="Ragi Biscuits"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26436 web-story type-web-story status-publish entry" aria-label="baked samosa"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/baked-samosa/">baked samosa</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 14, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/baked-samosa/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="baked samosa"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/02/baked-samosa.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/02/baked-samosa.jpg"
+								width="360"
+								height="600"
+								alt="baked samosa"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26259 web-story type-web-story status-publish entry" aria-label="thandai powder"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/thandai-powder/">thandai powder</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 10, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/thandai-powder/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="thandai powder"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/03/thandai-powder.jpg"
+								width="360"
+								height="600"
+								alt="thandai powder"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26158 web-story type-web-story status-publish entry" aria-label="Pav Bhaji"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/pav-bhaji/">Pav Bhaji</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 7, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/pav-bhaji/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Pav Bhaji"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/12/pav-bhaji-2020.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/12/pav-bhaji-2020.jpg"
+								width="360"
+								height="600"
+								alt="Pav Bhaji"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26140 web-story type-web-story status-publish entry" aria-label="Litti Chokha"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/litti-chokha/">Litti Chokha</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 6, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/litti-chokha/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Litti Chokha"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/11/litti-chokha-1.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2019/11/litti-chokha-1.jpg"
+								width="360"
+								height="600"
+								alt="Litti Chokha"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-26125 web-story type-web-story status-publish entry" aria-label="Dal Makhani"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/dal-makhani/">Dal Makhani</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 5, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/dal-makhani/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Dal Makhani"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/03/dal-makhani.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/03/dal-makhani.jpg"
+								width="360"
+								height="600"
+								alt="Dal Makhani"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25998 web-story type-web-story status-publish entry" aria-label="Rajma Chawal"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/rajma-chawal/">Rajma Chawal</a></h2>
+<p class="entry-meta"><time class="entry-time">Mar 2, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/rajma-chawal/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Rajma Chawal"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1.jpg"
+								width="360"
+								height="600"
+								alt="Rajma Chawal"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25863 web-story type-web-story status-publish entry" aria-label="Gajar ka Halwa"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/gajar-ka-halwa/">Gajar ka Halwa</a></h2>
+<p class="entry-meta"><time class="entry-time">Feb 27, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/gajar-ka-halwa/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Gajar ka Halwa"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/11/gajar-ka-halwa.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/11/gajar-ka-halwa.jpg"
+								width="360"
+								height="600"
+								alt="Gajar ka Halwa"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25716 web-story type-web-story status-publish entry" aria-label="Palak paneer"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/palak-paneer/">Palak paneer</a></h2>
+<p class="entry-meta"><time class="entry-time">Feb 25, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/palak-paneer/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Palak paneer"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2018/03/palak-paneer-2019.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2018/03/palak-paneer-2019.jpg"
+								width="360"
+								height="600"
+								alt="Palak paneer"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25648 web-story type-web-story status-publish entry" aria-label="Homemade Rasagulla"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/homemade-rasagulla/">Homemade Rasagulla</a></h2>
+<p class="entry-meta"><time class="entry-time">Feb 23, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/homemade-rasagulla/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Homemade Rasagulla"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2019/10/rasagulla.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2019/10/rasagulla.jpg"
+								width="360"
+								height="600"
+								alt="Homemade Rasagulla"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25568 web-story type-web-story status-publish entry" aria-label="Dal Baati Churma"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/dal-baati-churma/">Dal Baati Churma</a></h2>
+<p class="entry-meta"><time class="entry-time">Feb 21, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/dal-baati-churma/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Dal Baati Churma"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2020/11/dal-bati-churma.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2020/11/dal-bati-churma.jpg"
+								width="360"
+								height="600"
+								alt="Dal Baati Churma"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article><article class="post-25461 web-story type-web-story status-publish entry" aria-label="Besan ke ladoo"><header class="entry-header"><h2 class="entry-title"><a class="entry-title-link" rel="bookmark" href="https://www.secondrecipe.com/web-stories/besan-ke-ladoo/">Besan ke ladoo</a></h2>
+<p class="entry-meta"><time class="entry-time">Feb 18, 2021</time> <span class="dot">&middot;</span>  </p></header><div class="entry-content">		<div class="wp-block-web-stories-embed web-stories-embed alignnone">
+			<div class="wp-block-embed__wrapper" style="--aspect-ratio: 0.600000; --width: 360px; --height: 600px">
+				<amp-story-player>
+					<a href="https://www.secondrecipe.com/web-stories/besan-ke-ladoo/">
+													<img
+							 src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20600'%3E%3C/svg%3E"
+								width="360"
+								height="600"
+								alt="Besan ke ladoo"
+																							
+								decoding="async"
+								data-amp-story-player-poster-img
+						 data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/02/besan-ladoo-2.jpg"	/><noscript><img
+								src="https://www.secondrecipe.com/wp-content/uploads/2021/02/besan-ladoo-2.jpg"
+								width="360"
+								height="600"
+								alt="Besan ke ladoo"
+																								loading="lazy"
+								decoding="async"
+								data-amp-story-player-poster-img
+							/></noscript>
+												</a>
+				</amp-story-player>
+			</div>
+		</div>
+		</div><footer class="entry-footer"></footer></article></main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" id="genesis-sidebar-primary"><h2 class="genesis-sidebar-title screen-reader-text">Primary Sidebar</h2><div class="feast-modern-sidebar">
+<div class="wp-block-group feast-about-author is-layout-flow"><div class="wp-block-group__inner-container">
+<p><strong>Hi,I am Bhavana &amp; this is my wonderland of recipes.I have been in IT for 15+ years have always loved writing.My husband Gaurav &amp; I,love to cook, click &amp; host people</strong></p>
+
+
+
+<p class="has-text-align-center"><a href="/about">More</a><a href="/about-us/"> about me →</a></p>
+</div></div>
+
+
+
+<h3 class="wp-block-heading">Easy Air fryer recipes</h3>
+
+
+<div class='feast-category-index  feast-recipe-index'><ul class="fsri-list feast-grid-half feast-desktop-grid-half"><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-accordion-potatoes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="accordion potatoes" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-540x720.jpg 540w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-360x480.jpg" class=" wp-post-image" alt="accordion potatoes" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2022/05/accordion-potatoes-540x720.jpg 540w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Air fryer accordion potatoes recipe</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-smashed-potatoes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="smashed potatoes recipe air fryer" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-360x480.jpg" class=" wp-post-image" alt="smashed potatoes recipe air fryer" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/12/baby-smashed-potatoes-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Air fryer smashed potatoes | smashed potatoes recipe</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-potato-wedges/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="air fryer potato wedges" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-540x720.jpg 540w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-360x480.jpg" class=" wp-post-image" alt="air fryer potato wedges" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2022/02/air-fryer-potato-wedges-540x720.jpg 540w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Crispy Air fryer potato wedges recipe</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-french-fries/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="homemade air fryer french fries" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-540x720.jpg 540w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-360x480.jpg" class=" wp-post-image" alt="homemade air fryer french fries" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2021/12/easy-air-fryer-fries-540x720.jpg 540w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Easy air fryer french Fries | air fryer home fries</div></a></li></ul></div>
+
+
+<h3 class="wp-block-heading" id="h-popular-posts">Popular posts</h3>
+
+
+<div class='feast-category-index  feast-recipe-index'><ul class="fsri-list feast-grid-half feast-desktop-grid-half"><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-pakoras/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="onion pakora air fryer" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-540x720.jpg 540w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-360x480.jpg" class=" wp-post-image" alt="onion pakora air fryer" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-640x853.jpg 640w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-240x320.jpg 240w, https://www.secondrecipe.com/wp-content/uploads/2021/12/pakora-air-fryer-540x720.jpg 540w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Air fryer onion pakora | Onion bhajiya</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-potato-cakes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="air fryer potato cakes recipe" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-360x480.jpg" class=" wp-post-image" alt="air fryer potato cakes recipe" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/air-fryer-potato-cakes-recipe-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Air fryer potato cakes | Potato cakes in air fryer</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/chana-saag-recipe/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="saag chana recipe" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-360x480.jpg" class=" wp-post-image" alt="saag chana recipe" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/saag-chana-recipe-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Chana saag recipe | Saag channa recipe</div></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/homemade-air-fryer-hash-browns/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="vegan hash browns" decoding="async" data-pin-nopin="true" aria-hidden="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-360x480.jpg" class=" wp-post-image" alt="vegan hash browns" decoding="async" data-pin-nopin="true" aria-hidden="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/04/vegan-hash-browns-1-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript><div class="fsri-title">Air fryer hash browns | Vegan hash brown recipe</div></a></li></ul></div>
+
+
+<p></p>
+</div></aside></div></div><footer class="site-footer"><div class="wrap"><h2 class="screen-reader-text">Footer</h2><div class="feast-modern-footer">
+<p class="has-text-align-center"><a href="#" rel="nofollow">^ back to top</a></p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-6">
+<div class="wp-block-column is-layout-flow">
+<h3 class="wp-block-heading" id="h-our-recipe-collections">Our Recipe collections</h3>
+
+
+<div class='feast-category-index  feast-recipe-index'><ul class="fsri-list feast-grid-fifth feast-desktop-grid-fifth"><li class="listing-item"><a href="https://www.secondrecipe.com/easy-soup-recipes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="easy soup recipes" decoding="async" data-pin-nopin="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-360x480.jpg" class=" wp-post-image" alt="easy soup recipes" decoding="async" data-pin-nopin="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2022/02/Soup-recipes-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/air-fryer-indian-recipes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="air fryer recipes indian style" decoding="async" data-pin-nopin="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-360x480.jpg" class=" wp-post-image" alt="air fryer recipes indian style" decoding="async" data-pin-nopin="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/12/air-fryer-recipe-collage-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/indian-pickle-recipes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="Easy Indian pickles recipe | pickle recipes indian" decoding="async" data-pin-nopin="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-360x480.jpg" class=" wp-post-image" alt="Easy Indian pickles recipe | pickle recipes indian" decoding="async" data-pin-nopin="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-pickles_conv-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a></li><li class="listing-item"><a href="https://www.secondrecipe.com/indian-street-food-recipes/" style="text-decoration: none;"><img width="360" height="480" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" class=" wp-post-image" alt="Vegetarian Indian street food recipes| street food recipes indian" decoding="async" data-pin-nopin="true" data-lazy-srcset="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-640x853.jpg 640w" data-lazy-sizes="(max-width: 360px) 100vw, 360px" data-lazy-src="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-360x480.jpg" /><noscript><img width="360" height="480" src="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-360x480.jpg" class=" wp-post-image" alt="Vegetarian Indian street food recipes| street food recipes indian" decoding="async" data-pin-nopin="true" srcset="https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-360x480.jpg 360w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-720x960.jpg 720w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-180x240.jpg 180w, https://www.secondrecipe.com/wp-content/uploads/2021/11/Indian-street-food-recipes-640x853.jpg 640w" sizes="(max-width: 360px) 100vw, 360px" /></noscript></a></li></ul></div></div>
+
+
+
+<div class="wp-block-column is-layout-flow">
+<h3 class="wp-block-heading" id="h-useful-links">Useful links</h3>
+
+
+
+<ul style="font-size:18px"><li><a href="https://www.secondrecipe.com/contact-us/">Contact Us</a></li><li><a href="https://www.secondrecipe.com/recipes/">Recipes</a></li><li><a href="https://www.secondrecipe.com/web-stories/">Web Stories</a></li><li><a href="https://www.secondrecipe.com/privacy/">Privacy Policy</a></li></ul>
+</div>
+</div>
+
+
+
+<p class="has-text-align-center">As an Amazon Associate I earn from qualifying purchases</p>
+
+
+
+<p class="has-text-align-center">Copyright © 2022 <strong>Secondrecipe</strong></p>
+</div></div></footer></div><style type="text/css" media="screen"></style>
+
+<style id='core-block-supports-inline-css'>
+.wp-container-6.wp-container-6{flex-wrap:nowrap;}
+</style>
+<script id='wprm-public-js-extra'>
+var wprm_public = {"endpoints":{"analytics":"https:\/\/www.secondrecipe.com\/wp-json\/wp-recipe-maker\/v1\/analytics"},"settings":{"features_comment_ratings":true,"template_color_comment_rating":"#343434","instruction_media_toggle_default":"on","video_force_ratio":false,"analytics_enabled":false,"print_new_tab":true},"post_id":"44176","home_url":"https:\/\/www.secondrecipe.com\/","print_slug":"wprm_print","permalinks":"\/%postname%\/","ajax_url":"https:\/\/www.secondrecipe.com\/wp-admin\/admin-ajax.php","nonce":"bc0f992bb0","api_nonce":"6c452768e2","translations":[]};
+</script>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/wp-content/plugins/wp-recipe-maker/dist/public-modern.js?ver=1662247032' id='wprm-public-js' defer></script>
+<script src='https://www.secondrecipe.com/wp-content/plugins/makestories-helper/vendor/slick/slick.min.js?ver=6.2.2' id='slick-min-js-js' defer></script>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/wp-content/plugins/makestories-helper/assets/js/ms-script.js?ver=1687518565' id='script-main-js' defer></script>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/player/StoryPlayer.js?ver=1687518565' id='ms-story-player-js' defer></script>
+<script id='wprmp-public-js-extra'>
+var wprmp_public = {"endpoints":{"private_notes":"https:\/\/www.secondrecipe.com\/wp-json\/wp-recipe-maker\/v1\/private-notes"},"settings":{"recipe_template_mode":"modern","features_adjustable_servings":true,"adjustable_servings_round_to_decimals":"2","unit_conversion_temperature_conversion":false,"unit_conversion_system_1_temperature":"F","unit_conversion_system_2_temperature":"C","fractions_enabled":false,"fractions_use_mixed":true,"fractions_use_symbols":true,"fractions_max_denominator":"8","unit_conversion_system_1_fractions":true,"unit_conversion_system_2_fractions":true,"unit_conversion_enabled":false,"decimal_separator":"point","features_comment_ratings":true,"features_user_ratings":true,"user_ratings_thank_you_message":"Thank you for voting!","user_ratings_force_comment":"2_star","user_ratings_force_comment_scroll_to":"","servings_changer_display":"tooltip_slider","template_ingredient_list_style":"disc","template_instruction_list_style":"decimal","template_color_icon":"#343434"},"timer":{"sound_file":"https:\/\/www.secondrecipe.com\/wp-content\/plugins\/wp-recipe-maker-premium\/assets\/sounds\/alarm.mp3","text":{"start_timer":"Click to Start Timer"},"icons":{"pause":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\"><g ><path fill=\"#fffefe\" d=\"M9,2H4C3.4,2,3,2.4,3,3v18c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1V3C10,2.4,9.6,2,9,2z\"\/><path fill=\"#fffefe\" d=\"M20,2h-5c-0.6,0-1,0.4-1,1v18c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1V3C21,2.4,20.6,2,20,2z\"\/><\/g><\/svg>","play":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\"><g ><path fill=\"#fffefe\" d=\"M6.6,2.2C6.3,2,5.9,1.9,5.6,2.1C5.2,2.3,5,2.6,5,3v18c0,0.4,0.2,0.7,0.6,0.9C5.7,22,5.8,22,6,22c0.2,0,0.4-0.1,0.6-0.2l12-9c0.3-0.2,0.4-0.5,0.4-0.8s-0.1-0.6-0.4-0.8L6.6,2.2z\"\/><\/g><\/svg>","close":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\"><g ><path fill=\"#fffefe\" d=\"M22.7,4.3l-3-3c-0.4-0.4-1-0.4-1.4,0L12,7.6L5.7,1.3c-0.4-0.4-1-0.4-1.4,0l-3,3c-0.4,0.4-0.4,1,0,1.4L7.6,12l-6.3,6.3c-0.4,0.4-0.4,1,0,1.4l3,3c0.4,0.4,1,0.4,1.4,0l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l3-3c0.4-0.4,0.4-1,0-1.4L16.4,12l6.3-6.3C23.1,5.3,23.1,4.7,22.7,4.3z\"\/><\/g><\/svg>"}},"recipe_submission":{"max_file_size":536870912,"text":{"image_size":"The image file is too large"}}};
+</script>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/wp-content/plugins/wp-recipe-maker-premium/dist/public-pro.js?ver=1662247032' id='wprmp-public-js' defer></script>
+<script id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id='rocket-preload-links-js-extra'>
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?(.*)wp\\-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/www.secondrecipe.com","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script src='https://www.secondrecipe.com/wp-includes/js/hoverIntent.min.js?ver=1.10.2' id='hoverIntent-js' defer></script>
+<script src='https://www.secondrecipe.com/wp-content/themes/genesis/lib/js/menu/superfish.min.js?ver=1.7.10' id='superfish-js' defer></script>
+<script src='https://www.secondrecipe.com/wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=3.4.0' id='superfish-args-js' defer></script>
+<script src='https://www.secondrecipe.com/wp-content/themes/genesis/lib/js/skip-links.min.js?ver=3.4.0' id='skip-links-js' defer></script>
+<script data-minify="1" src='https://www.secondrecipe.com/wp-content/cache/min/1/amp-story-player-v0.js?ver=1662247158' id='standalone-amp-story-player-js' defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.secondrecipe.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>
+        </body></html>

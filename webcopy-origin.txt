@@ -1,0 +1,28 @@
+Uri: https://www.secondrecipe.com/
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\index.htm
+Content Type: text/html
+
+Uri: https://www.secondrecipe.com/recipes/
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\recipes\index.htm
+Content Type: text/html
+
+Uri: https://www.secondrecipe.com/web-stories/
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\web-stories\index.htm
+Content Type: text/html
+
+Uri: https://www.secondrecipe.com/web-stories/feed/
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\web-stories\feed\index.htm
+Content Type: application/rss+xml
+
+Uri: https://www.secondrecipe.com/wp-content/plugins/wp-rocket/assets/img/youtube.png
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\wp-content\plugins\wp-rocket\assets\img\youtube.png
+Content Type: image/png
+
+Uri: https://www.secondrecipe.com/wp-content/themes/seasonedpro-v444/images/favicon.ico
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\wp-content\themes\seasonedpro-v444\images\favicon.ico
+Content Type: image/x-icon
+
+Uri: https://www.secondrecipe.com/wp-content/themes/seasonedpro-v444/images/search.svg
+File Name: C:\Downloaded Web Sites\www.secondrecipe.com\wp-content\themes\seasonedpro-v444\images\search.svg
+Content Type: image/svg+xml
+
